@@ -11,13 +11,19 @@ export class Edital {
     @Column()
     arquivoId: number;
 
-    @Column()
+    @Column({
+        type: 'timestamp'
+    })
     dataInicio: Date;
 
-    @Column()
+    @Column({
+        type: 'timestamp'
+    })
     dataFim: Date;
 
-    @Column()
+    @Column({
+        type: 'timestamp'
+    })
     dataResultado: Date;
 
     constructor(id: number, descricao: string, arquivoId: number, dataInicio: Date, dataFim: Date, dataResultado: Date) {

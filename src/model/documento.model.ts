@@ -8,7 +8,9 @@ export class Documento {
     @Column()
     nome: string;
 
-    @Column()
+    @Column({
+        type: 'timestamp'
+    })
     dataCriacao: Date;
 
     @Column({

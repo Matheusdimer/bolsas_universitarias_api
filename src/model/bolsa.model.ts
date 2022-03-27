@@ -14,13 +14,25 @@ export class Bolsa {
     @Column()
     nome: string;
 
-
+    @Column({
+        type: 'bigint',
+        name: 'i_requisitos'
+    })
     requisitos: Array<Requisito>;
 
+    @Column({
+        type: 'bigint',
+        name: 'i_documentos'
+    })
     documentos: Array<Documento>;
 
+    @Column({
+        type: 'bigint',
+        name: 'i_editais'
+    })
     editais: Array<Edital>;
 
+    @Column()
     editalAtivo: boolean;
 
     constructor(id: number, descricao: number, nome: string, documentos: Array<Documento>, requisitos: Array<Requisito>, editais: Array<Edital>) {
