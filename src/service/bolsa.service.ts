@@ -1,35 +1,31 @@
 import {FindConditions, getRepository} from "typeorm";
 import {NotFoundException} from "../util/exception/not-found.exception";
-import {Orgao} from "../model/orgao.model";
+import {Bolsa} from "../model/bolsa.model";
 
-export default class OrgaoService {
-    repository = getRepository(Orgao);
+export default class BolsaService {
+    repository = getRepository(Bolsa);
 
     async find(id: number) {
-        const orgao = await this.repository.findOne(id);
+        const bolsa = await this.repository.findOne(id);
 
-        if (!orgao) {
+        if (!bolsa) {
             throw new NotFoundException(`Orgão com id ${id} não encontrado.`);
         }
 
-        return orgao;
+        return bolsa;
     }
 
     async findAll(skip: number, take: number, codigo?: number) {
-        const where: FindConditions<Orgao> = {};
-
-        if (codigo) {
-            where.codigo = codigo;
-        }
+        const where: FindConditions<Bolsa> = {};
 
         return await this.repository.find({ skip, take, where })
     }
 
-    async create(orgao: Orgao) {
+    async create(orgao: Bolsa) {
         return await this.repository.save(orgao);
     }
 
-    async update(id: number, orgao: Orgao) {
+    async update(id: number, orgao: Bolsa) {
         await this.find(id);
         orgao.id = id;
         return await this.repository.save(orgao);

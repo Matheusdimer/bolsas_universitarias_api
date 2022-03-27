@@ -1,6 +1,6 @@
 import {Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
 import {Pessoa} from "./pessoa.model";
-import {Orgao} from "./orgao.model";
+import {Orgao} from "./bolsa.model";
 import {SimNaoTransformer, SituacaoTransformer} from "../util/enum.transformers";
 
 export enum Situacao {

@@ -1,9 +1,9 @@
 import {Router} from "express";
 import authMiddleware from "../middleware/auth.middleware";
-import OrgaoController from "../controllers/orgao.controller";
+import BolsaController from "../controllers/bolsa.controller";
 
 const router = Router();
-const controller = new OrgaoController();
+const controller = new BolsaController();
 
 router.get("/", authMiddleware, controller.findAll.bind(controller));
 

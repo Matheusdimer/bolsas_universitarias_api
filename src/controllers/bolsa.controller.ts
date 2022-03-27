@@ -1,9 +1,9 @@
 import {Request, Response} from "express";
 import {parseSkipLimit, tryParseNumber} from "../util/params.parser";
-import OrgaoService from '../service/orgao.service';
+import BolsaService from '../service/bolsa.service';
 
-export default class OrgaoController {
-    service = new OrgaoService();
+export default class BolsaController {
+    service = new BolsaService();
 
     async findAll(req: Request, res: Response) {
         const { skip, limit } = parseSkipLimit(req);
