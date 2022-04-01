@@ -1,7 +1,7 @@
-import {Request, Response} from "express";
+import {NextFunction, Request, Response} from "express";
 import {HttpException} from "../util/exception/http.exception";
 
-export function httpErrorHandler(err: HttpException, req: Request, res: Response) {
+export function httpErrorHandler(err: HttpException, req: Request, res: Response, next: NextFunction) {
     const status = err.status || 500;
 
     res.status(status).json({
