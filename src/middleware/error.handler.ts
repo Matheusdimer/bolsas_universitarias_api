@@ -4,6 +4,7 @@ import {HttpException} from "../util/exception/http.exception";
 export function httpErrorHandler(err: HttpException, req: Request, res: Response, next: NextFunction) {
     const status = err.status || 500;
 
+    console.log(err);
     res.status(status).json({
         status: status,
         message: status === 500 ? "Ocorreu um erro interno." : err.message
