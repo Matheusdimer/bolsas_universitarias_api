@@ -7,8 +7,11 @@ module.exports = {
   "database": process.env.DB_NAME,
   "synchronize": true,
   "logging": false,
+  "ssl": "true",
   "extra": {
-    "ssl": "true"
+      "ssl": {
+        "rejectUnauthorized" : false
+      }
   },
   "entities": [
     "src/model/**/*.{js,ts}",
