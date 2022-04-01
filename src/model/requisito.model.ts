@@ -1,4 +1,5 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {Bolsa} from "./bolsa.model";
 
 @Entity()
 export class Requisito {
@@ -7,7 +8,6 @@ export class Requisito {
 
     @Column()
     descricao: string;
-
 
 
     constructor(id: number, descricao: string) {

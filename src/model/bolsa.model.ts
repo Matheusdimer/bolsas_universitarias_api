@@ -1,4 +1,4 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinColumn, JoinTable, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Documento} from "./documento.model";
 import {Requisito} from "./requisito.model";
 import {Edital} from "./edital.model";
@@ -9,33 +9,44 @@ export class Bolsa {
     id: number;
 
     @Column()
-    descricao: number;
+    descricao: string;
 
     @Column()
     nome: string;
 
-    @Column({
-        type: 'bigint',
-        name: 'i_requisitos'
+    @ManyToOne(() => Requisito, requisito => null,{
+        createForeignKeyConstraints: true
     })
-    requisitos: Array<Requisito>;
-
-    @Column({
-        type: 'bigint',
-        name: 'i_documentos'
+    @JoinTable({
+        name: "bolsa_requisito",
+        joinColumn: {
+            name: "i_bolsas",
+            referencedColumnName: "id"
+        },
+        inverseJoinColumn: {
+            name: "i_requisitos",
+            referencedColumnName: "id"
+        }
     })
+    requisitos: Requisito[];
+    //
+    // @Column({
+    //     type: 'bigint',
+    //     name: 'i_documentos'
+    // })
     documentos: Array<Documento>;
-
-    @Column({
-        type: 'bigint',
-        name: 'i_editais'
-    })
+    //
+    // @Column({
+    //     type: 'bigint',
+    //     name: 'i_editais'
+    // })
     editais: Array<Edital>;
 
     @Column()
     editalAtivo: boolean;
 
-    constructor(id: number, descricao: number, nome: string, documentos: Array<Documento>, requisitos: Array<Requisito>, editais: Array<Edital>) {
+    constructor(id: number, descricao: string, nome: string, documentos: Array<Documento>, requisitos: Requisito[], editais: Array<Edital>
+    ) {
         this.id = id;
         this.descricao = descricao;
         this.nome = nome;
