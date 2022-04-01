@@ -15,8 +15,9 @@ export class ArquivoController {
             throw new BadRequestException('Nenhum arquivo recebido.');
         }
 
+        const arquivo = await this.service.save(new Arquivo(file.name, file.data, file.mimetype));
 
-        return res.json(await this.service.save(new Arquivo(file.name, file.data, file.mimetype)));
+        res.status(201).send(arquivo);
     }
 
     async find(req: Request, res: Response) {
