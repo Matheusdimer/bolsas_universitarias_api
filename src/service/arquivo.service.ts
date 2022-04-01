@@ -7,7 +7,7 @@ export class ArquivoService {
     private repository: Repository<Arquivo> = getRepository(Arquivo);
 
     async save(arquivo: Arquivo) {
-        await this.repository.save(arquivo);
+        return await this.repository.save(arquivo);
     }
 
     async find(id: number): Promise<Arquivo> {
