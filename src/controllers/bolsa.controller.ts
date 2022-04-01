@@ -1,6 +1,7 @@
 import {Request, Response} from "express";
 import {parseSkipLimit, tryParseNumber} from "../util/params.parser";
 import BolsaService from '../service/bolsa.service';
+import {Bolsa} from "../model/bolsa.model";
 
 export default class BolsaController {
     service = new BolsaService();
@@ -19,7 +20,9 @@ export default class BolsaController {
     }
 
     async create(req: Request, res: Response) {
-        return res.json(await this.service.create(req.body));
+        let bolsa : Bolsa = req.body;
+        console.log(bolsa)
+        return res.json(await this.service.create(bolsa));
     }
 
     async update(req: Request, res: Response) {

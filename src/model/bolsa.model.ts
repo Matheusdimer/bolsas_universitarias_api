@@ -17,49 +17,25 @@ export class Bolsa {
     @OneToMany(() => Requisito,requisito => requisito.bolsa)
     requisitos: Requisito[];
 
-    // @ManyToOne(() => Documento, documento => null,{
-    //     createForeignKeyConstraints: true
-    // })
-    // @JoinTable({
-    //     name: "bolsa_documento",
-    //     joinColumn: {
-    //         name: "i_bolsas",
-    //         referencedColumnName: "id"
-    //     },
-    //     inverseJoinColumn: {
-    //         name: "i_documentos",
-    //         referencedColumnName: "id"
-    //     }
-    // })
-    // documentos: Documento[];
-    //
-    // @ManyToOne(() => Edital, edital => null,{
-    //     createForeignKeyConstraints: true,
-    // })
-    // @JoinTable({
-    //     name: "bolsa_edital",
-    //     joinColumn: {
-    //         name: "i_bolsas",
-    //         referencedColumnName: "id"
-    //     },
-    //     inverseJoinColumn: {
-    //         name: "i_editais",
-    //         referencedColumnName: "id"
-    //     }
-    // })
-    // editais: Edital[];
-    //
-    // @Column()
-    // editalAtivo: boolean;
+    @OneToMany(() => Documento, documento => documento.bolsa)
+    documentos: Documento[];
+
+    @ManyToOne(() => Edital, edital => edital.bolsa)
+    editais: Edital[];
+
+    @Column({
+        nullable:true
+    } )
+    editalAtivo: boolean;
 
     constructor(id: number, descricao: string, nome: string, documentos: Documento[], requisitos: Requisito[], editais: Edital[]
     ) {
         this.id = id;
         this.descricao = descricao;
         this.nome = nome;
-        // this.documentos = documentos;
+        this.documentos = documentos;
         this.requisitos = requisitos;
-        // this.editais = editais;
-        // this.editalAtivo = true;
+        this.editais = editais;
+        this.editalAtivo = true;
     }
 }

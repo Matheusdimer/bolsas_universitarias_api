@@ -1,4 +1,5 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
+import {Bolsa} from "./bolsa.model";
 
 @Entity()
 export class Edital {
@@ -26,12 +27,18 @@ export class Edital {
     })
     dataResultado: Date;
 
-    constructor(id: number, descricao: string, arquivoId: number, dataInicio: Date, dataFim: Date, dataResultado: Date) {
+    @ManyToOne(()=> Bolsa,{
+        createForeignKeyConstraints : true
+    })
+    bolsa: Bolsa;
+
+    constructor(id: number, descricao: string, arquivoId: number, dataInicio: Date, dataFim: Date, dataResultado: Date, bolsa: Bolsa) {
         this.id = id;
         this.descricao = descricao;
         this.arquivoId = arquivoId;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
         this.dataResultado = dataResultado;
+        this.bolsa = bolsa;
     }
 }
