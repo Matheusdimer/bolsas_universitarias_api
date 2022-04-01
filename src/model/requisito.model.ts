@@ -9,9 +9,14 @@ export class Requisito {
     @Column()
     descricao: string;
 
+    @ManyToOne(()=> Bolsa,{
+        createForeignKeyConstraints : true
+    })
+    bolsa: Bolsa;
 
-    constructor(id: number, descricao: string) {
+    constructor(id: number, descricao: string, bolsa: Bolsa) {
         this.id = id;
         this.descricao = descricao;
+        this.bolsa = bolsa;
     }
 }

@@ -14,45 +14,52 @@ export class Bolsa {
     @Column()
     nome: string;
 
-    @ManyToOne(() => Requisito, requisito => null,{
-        createForeignKeyConstraints: true
-    })
-    @JoinTable({
-        name: "bolsa_requisito",
-        joinColumn: {
-            name: "i_bolsas",
-            referencedColumnName: "id"
-        },
-        inverseJoinColumn: {
-            name: "i_requisitos",
-            referencedColumnName: "id"
-        }
-    })
+    @OneToMany(() => Requisito,requisito => requisito.bolsa)
     requisitos: Requisito[];
-    //
-    // @Column({
-    //     type: 'bigint',
-    //     name: 'i_documentos'
-    // })
-    documentos: Array<Documento>;
-    //
-    // @Column({
-    //     type: 'bigint',
-    //     name: 'i_editais'
-    // })
-    editais: Array<Edital>;
 
-    @Column()
-    editalAtivo: boolean;
+    // @ManyToOne(() => Documento, documento => null,{
+    //     createForeignKeyConstraints: true
+    // })
+    // @JoinTable({
+    //     name: "bolsa_documento",
+    //     joinColumn: {
+    //         name: "i_bolsas",
+    //         referencedColumnName: "id"
+    //     },
+    //     inverseJoinColumn: {
+    //         name: "i_documentos",
+    //         referencedColumnName: "id"
+    //     }
+    // })
+    // documentos: Documento[];
+    //
+    // @ManyToOne(() => Edital, edital => null,{
+    //     createForeignKeyConstraints: true,
+    // })
+    // @JoinTable({
+    //     name: "bolsa_edital",
+    //     joinColumn: {
+    //         name: "i_bolsas",
+    //         referencedColumnName: "id"
+    //     },
+    //     inverseJoinColumn: {
+    //         name: "i_editais",
+    //         referencedColumnName: "id"
+    //     }
+    // })
+    // editais: Edital[];
+    //
+    // @Column()
+    // editalAtivo: boolean;
 
-    constructor(id: number, descricao: string, nome: string, documentos: Array<Documento>, requisitos: Requisito[], editais: Array<Edital>
+    constructor(id: number, descricao: string, nome: string, documentos: Documento[], requisitos: Requisito[], editais: Edital[]
     ) {
         this.id = id;
         this.descricao = descricao;
         this.nome = nome;
-        this.documentos = documentos;
+        // this.documentos = documentos;
         this.requisitos = requisitos;
-        this.editais = editais;
-        this.editalAtivo = true;
+        // this.editais = editais;
+        // this.editalAtivo = true;
     }
 }
