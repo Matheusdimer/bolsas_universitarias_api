@@ -9,6 +9,9 @@ export class User {
     username: string;
 
     @Column()
+    fotoId?: number;
+
+    @Column()
     password: string;
 
 
