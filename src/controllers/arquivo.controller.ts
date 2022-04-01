@@ -17,6 +17,8 @@ export class ArquivoController {
 
         const arquivo = await this.service.save(new Arquivo(file.name, file.data, file.mimetype));
 
+        delete arquivo.dado;
+
         res.status(201).send(arquivo);
     }
 

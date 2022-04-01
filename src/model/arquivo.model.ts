@@ -14,9 +14,9 @@ export class Arquivo {
     extensao?: string;
 
     @Column({
-        type: 'bytea'
+        type: 'bytea',
     })
-    dado: Uint8Array;
+    dado?: Uint8Array;
 
     @Column({
         type: 'timestamp'
