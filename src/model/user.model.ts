@@ -8,16 +8,19 @@ export class User {
     @Column()
     username: string;
 
-    @Column()
-    fotoId?: number;
+    @Column({
+        nullable: true
+    })
+    fotoId: number;
 
     @Column()
     password: string;
 
 
-    constructor(id: number, username: string, password: string) {
+    constructor(id: number, fotoId: number, username: string, password: string) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.fotoId = fotoId;
     }
 }
