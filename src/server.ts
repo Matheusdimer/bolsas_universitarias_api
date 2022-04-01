@@ -15,6 +15,5 @@ app.use(fileUpload());
 app.use('/api', routes);
 
 app.use(httpErrorHandler);
-app.use(defaultErrorHandler);
 
 app.listen(PORT, () => console.log(`Application listening on port ${PORT}.`));

@@ -5,14 +5,14 @@ import UserController from "../controllers/user.controller";
 const router = Router();
 const controller = new UserController();
 
-router.get("/", authMiddleware, controller.findAll);
+router.get("/", authMiddleware, controller.findAll.bind(controller));
 
-router.get("/:id", authMiddleware, controller.find);
+router.get("/:id", authMiddleware, controller.find.bind(controller));
 
-router.post("/", controller.create);
+router.post("/", controller.create.bind(controller));
 
-router.put("/:id", authMiddleware, controller.update);
+router.put("/:id", authMiddleware, controller.update.bind(controller));
 
-router.delete("/:id", authMiddleware, controller.remove);
+router.delete("/:id", authMiddleware, controller.remove.bind(controller));
 
 export default router;
