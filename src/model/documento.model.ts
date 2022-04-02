@@ -19,7 +19,7 @@ export class Documento {
     })
     arquivoId: number
 
-    @ManyToOne(()=> Bolsa,{
+    @ManyToOne(()=> Bolsa, bolsa => bolsa.documentos, {
         createForeignKeyConstraints : true
     })
     bolsa: Bolsa;

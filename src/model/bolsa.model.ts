@@ -14,13 +14,19 @@ export class Bolsa {
     @Column()
     nome: string;
 
-    @OneToMany(() => Requisito,requisito => requisito.bolsa)
+    @OneToMany(() => Requisito,requisito => requisito.bolsa, {
+        cascade: true
+    })
     requisitos: Requisito[];
 
-    @OneToMany(() => Documento, documento => documento.bolsa)
+    @OneToMany(() => Documento, documento => documento.bolsa, {
+        cascade: true
+    })
     documentos: Documento[];
 
-    @ManyToOne(() => Edital, edital => edital.bolsa)
+    @OneToMany(() => Edital, edital => edital.bolsa, {
+        cascade: true
+    })
     editais: Edital[];
 
     @Column({

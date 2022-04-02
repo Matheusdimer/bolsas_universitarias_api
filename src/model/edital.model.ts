@@ -27,7 +27,7 @@ export class Edital {
     })
     dataResultado: Date;
 
-    @ManyToOne(()=> Bolsa,{
+    @ManyToOne(()=> Bolsa, bolsa => bolsa.editais, {
         createForeignKeyConstraints : true
     })
     bolsa: Bolsa;

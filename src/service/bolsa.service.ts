@@ -18,7 +18,7 @@ export default class BolsaService {
     async findAll(skip: number, take: number, codigo?: number) {
         const where: FindConditions<Bolsa> = {};
 
-        return await this.repository.find({ skip, take, where })
+        return await this.repository.find({ skip, take, where, relations: ["requisitos", "editais", "documentos"]})
     }
 
     async create(orgao: Bolsa) {

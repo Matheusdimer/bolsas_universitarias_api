@@ -9,7 +9,7 @@ export class Requisito {
     @Column()
     descricao: string;
 
-    @ManyToOne(()=> Bolsa,{
+    @ManyToOne(()=> Bolsa, bolsa => bolsa.requisitos, {
         createForeignKeyConstraints : true
     })
     bolsa: Bolsa;
