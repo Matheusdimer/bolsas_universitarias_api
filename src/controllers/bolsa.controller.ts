@@ -23,10 +23,6 @@ export default class BolsaController {
 
     async create(req: Request, res: Response) {
         let bolsa : Bolsa = req.body;
-        bolsa.tipoBolsa = TipoBolsaTransformer.to(bolsa.tipoBolsa);
-        if (!bolsa.tipoBolsa) {
-            throw new ValidationException("Tipo de bolsa incorreto.");
-        }
         return res.json(await this.service.create(bolsa));
     }
 
