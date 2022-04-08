@@ -12,7 +12,7 @@ export const TipoBolsaTransformer: ValueTransformer = {
     to(value: any): any {
         let result = null;
         for(const tipo in TipoBolsa){
-            if(tipo.includes(value)){
+            if(tipo.slice(0,1) == (value)){
                 result = tipo;
             }
         }
