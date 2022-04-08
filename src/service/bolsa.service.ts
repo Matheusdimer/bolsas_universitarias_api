@@ -1,6 +1,6 @@
 import {FindConditions, getRepository} from "typeorm";
 import {NotFoundException} from "../util/exception/not-found.exception";
-import {Bolsa} from "../model/bolsa.model";
+import {Bolsa} from "../model/bolsa/bolsa.model";
 
 export default class BolsaService {
     repository = getRepository(Bolsa);

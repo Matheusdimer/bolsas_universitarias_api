@@ -1,7 +1,8 @@
-import {Column, Entity, JoinColumn, JoinTable, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Documento} from "./documento.model";
 import {Requisito} from "./requisito.model";
 import {Edital} from "./edital.model";
+import {TipoBolsa} from "../../enums/tipo.bolsa";
 
 @Entity()
 export class Bolsa {
@@ -34,14 +35,24 @@ export class Bolsa {
     } )
     editalAtivo: boolean;
 
-    constructor(id: number, descricao: string, nome: string, documentos: Documento[], requisitos: Requisito[], editais: Edital[]
-    ) {
+    @Column({
+        nullable: true
+    })
+    fotoId: number;
+
+    @Column()
+    tipoBolsa: TipoBolsa;
+
+    constructor(
+        id: number, descricao: string, nome: string, documentos: Documento[], requisitos: Requisito[], editais: Edital[], fotoId: number, tipoBolsa: TipoBolsa) {
         this.id = id;
         this.descricao = descricao;
         this.nome = nome;
         this.documentos = documentos;
         this.requisitos = requisitos;
         this.editais = editais;
+        this.fotoId = fotoId;
         this.editalAtivo = true;
+        this.tipoBolsa = tipoBolsa;
     }
 }

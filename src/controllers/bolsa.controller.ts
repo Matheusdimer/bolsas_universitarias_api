@@ -1,7 +1,9 @@
 import {Request, Response} from "express";
 import {parseSkipLimit, tryParseNumber} from "../util/params.parser";
 import BolsaService from '../service/bolsa.service';
-import {Bolsa} from "../model/bolsa.model";
+import {Bolsa} from "../model/bolsa/bolsa.model";
+import {TipoBolsa, TipoBolsaTransformer} from "../enums/tipo.bolsa";
+import {ValidationException} from "../util/exception/validation.exception";
 
 export default class BolsaController {
     service = new BolsaService();
@@ -21,6 +23,10 @@ export default class BolsaController {
 
     async create(req: Request, res: Response) {
         let bolsa : Bolsa = req.body;
+        bolsa.tipoBolsa = TipoBolsaTransformer.to(bolsa.tipoBolsa);
+        if (!bolsa.tipoBolsa) {
+            throw new ValidationException("Tipo de bolsa incorreto.");
+        }
         console.log(bolsa)
         return res.json(await this.service.create(bolsa));
     }
