@@ -2,7 +2,6 @@ import {Request, Response} from "express";
 import {parseSkipLimit, tryParseNumber} from "../util/params.parser";
 import AlunoService from "../service/aluno.service";
 import {Aluno} from "../model/aluno/aluno.model";
-import {SexoTransformer} from "../enums/sexo";
 
 export default class AlunoController {
     service = new AlunoService();
@@ -22,7 +21,6 @@ export default class AlunoController {
 
     async create(req: Request, res: Response) {
         let aluno : Aluno = req.body;
-        aluno.sexo = SexoTransformer.to(aluno.sexo);
         return res.json(await this.service.create(aluno));
     }
 

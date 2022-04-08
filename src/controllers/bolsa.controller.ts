@@ -2,8 +2,6 @@ import {Request, Response} from "express";
 import {parseSkipLimit, tryParseNumber} from "../util/params.parser";
 import BolsaService from '../service/bolsa.service';
 import {Bolsa} from "../model/bolsa/bolsa.model";
-import {TipoBolsa, TipoBolsaTransformer} from "../enums/tipo.bolsa";
-import {ValidationException} from "../util/exception/validation.exception";
 
 export default class BolsaController {
     service = new BolsaService();

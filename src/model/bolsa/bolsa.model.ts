@@ -2,7 +2,7 @@ import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Documento} from "./documento.model";
 import {Requisito} from "./requisito.model";
 import {Edital} from "./edital.model";
-import {TipoBolsa, TipoBolsaTransformer} from "../../enums/tipo.bolsa";
+import {TipoBolsa} from "../../enums/tipo.bolsa";
 
 @Entity()
 export class Bolsa {
