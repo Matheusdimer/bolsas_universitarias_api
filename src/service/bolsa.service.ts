@@ -6,7 +6,7 @@ export default class BolsaService {
     repository = getRepository(Bolsa);
 
     async find(id: number) {
-        const bolsa = await this.repository.findOne(id);
+        const bolsa = await this.repository.findOne(id, {relations: ["requisitos", "editais", "documentos"]});
 
         if (!bolsa) {
             throw new NotFoundException(`Bolsa com id ${id} não encontrado.`);
@@ -18,7 +18,7 @@ export default class BolsaService {
     async findAll(skip: number, take: number, codigo?: number) {
         const where: FindConditions<Bolsa> = {};
 
-        return await this.repository.find({ skip, take, where, relations: ["requisitos", "editais", "documentos"]})
+        return await this.repository.find({ skip, take, where})
     }
 
     async create(bolsa: Bolsa) {
