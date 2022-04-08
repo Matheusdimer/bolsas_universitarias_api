@@ -1,12 +1,11 @@
 import {Request, Response} from "express";
 import {parseSkipLimit, tryParseNumber} from "../util/params.parser";
-import BolsaService from '../service/bolsa.service';
-import {Bolsa} from "../model/bolsa/bolsa.model";
-import {TipoBolsa, TipoBolsaTransformer} from "../enums/tipo.bolsa";
-import {ValidationException} from "../util/exception/validation.exception";
+import AlunoService from "../service/aluno.service";
+import {Aluno} from "../model/aluno/aluno.model";
+import {SexoTransformer} from "../enums/sexo";
 
-export default class BolsaController {
-    service = new BolsaService();
+export default class AlunoController {
+    service = new AlunoService();
 
     async findAll(req: Request, res: Response) {
         const { skip, limit } = parseSkipLimit(req);
@@ -22,12 +21,9 @@ export default class BolsaController {
     }
 
     async create(req: Request, res: Response) {
-        let bolsa : Bolsa = req.body;
-        bolsa.tipoBolsa = TipoBolsaTransformer.to(bolsa.tipoBolsa);
-        if (!bolsa.tipoBolsa) {
-            throw new ValidationException("Tipo de bolsa incorreto.");
-        }
-        return res.json(await this.service.create(bolsa));
+        let aluno : Aluno = req.body;
+        aluno.sexo = SexoTransformer.to(aluno.sexo);
+        return res.json(await this.service.create(aluno));
     }
 
     async update(req: Request, res: Response) {

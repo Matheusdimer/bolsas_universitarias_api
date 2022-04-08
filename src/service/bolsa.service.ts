@@ -9,7 +9,7 @@ export default class BolsaService {
         const bolsa = await this.repository.findOne(id);
 
         if (!bolsa) {
-            throw new NotFoundException(`Orgão com id ${id} não encontrado.`);
+            throw new NotFoundException(`Bolsa com id ${id} não encontrado.`);
         }
 
         return bolsa;
@@ -21,25 +21,25 @@ export default class BolsaService {
         return await this.repository.find({ skip, take, where, relations: ["requisitos", "editais", "documentos"]})
     }
 
-    async create(orgao: Bolsa) {
-        return await this.repository.save(orgao);
+    async create(bolsa: Bolsa) {
+        return await this.repository.save(bolsa);
     }
 
-    async update(id: number, orgao: Bolsa) {
+    async update(id: number, bolsa: Bolsa) {
         await this.find(id);
-        orgao.id = id;
-        return await this.repository.save(orgao);
+        bolsa.id = id;
+        return await this.repository.save(bolsa);
     }
 
     async remove(id: number) {
-        const orgao = await this.find(id);
+        const bolsa = await this.find(id);
 
-        const deleteResult = await this.repository.delete(orgao);
+        const deleteResult = await this.repository.delete(bolsa);
 
         if (deleteResult.affected === 0) {
-            throw new Error("Erro ao excluir orgão.");
+            throw new Error("Erro ao excluir bolsa.");
         }
 
-        return orgao;
+        return bolsa;
     }
 }
