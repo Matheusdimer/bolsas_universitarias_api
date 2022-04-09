@@ -6,7 +6,7 @@ export default class AlunoService {
     repository = getRepository(Aluno);
 
     async find(id: number) {
-        const aluno = await this.repository.findOne(id);
+        const aluno = await this.repository.findOne(id, {relations: ["endereco", "usuario"]});
 
         if (!aluno) {
             throw new NotFoundException(`Aluno com id ${id} não encontrado.`);
@@ -21,7 +21,7 @@ export default class AlunoService {
     }
 
     async create(aluno: Aluno) {
-        return await this.repository.save(aluno);
+        return await this.repository.save(aluno, {});
     }
 
     async update(id: number, aluno: Aluno) {

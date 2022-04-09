@@ -1,5 +1,6 @@
-import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn} from "typeorm";
 import {Municipio} from "./municipio.model";
+import {Aluno} from "../aluno/aluno.model";
 
 @Entity()
 export class Endereco {
@@ -12,9 +13,10 @@ export class Endereco {
     @Column()
     bairro: string;
 
-    @ManyToOne(()=> Municipio, municipio => null, {
-        createForeignKeyConstraints : true
+    @OneToOne(()=> Municipio, {
+        cascade: true
     })
+    @JoinColumn()
     municipio: Municipio;
 
     @Column()

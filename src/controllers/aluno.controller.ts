@@ -21,6 +21,7 @@ export default class AlunoController {
 
     async create(req: Request, res: Response) {
         let aluno : Aluno = req.body;
+        console.log(aluno)
         return res.json(await this.service.create(aluno));
     }
 

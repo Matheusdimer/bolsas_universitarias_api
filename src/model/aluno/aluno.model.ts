@@ -1,7 +1,8 @@
-import {Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn} from "typeorm";
 import {User} from "../user.model";
 import {Sexo} from "../../enums/sexo";
 import {Endereco} from "../endereco/endereco.model";
+import {JoinTable} from "typeorm/browser";
 
 @Entity()
 export class Aluno {
@@ -19,18 +20,28 @@ export class Aluno {
     @Column()
     cpf: string;
 
-    @OneToOne(() => User)
+    @OneToOne(() => User, {
+        createForeignKeyConstraints: true,
+        cascade: true
+    })
+    @JoinColumn()
     usuario: User;
 
-    @ManyToOne(()=> Endereco, endereco => null, {
-        createForeignKeyConstraints : true
+    @OneToOne(()=> Endereco, {
+        nullable: true,
+        cascade: true
     })
+    @JoinColumn()
     endereco?: Endereco;
 
-    @Column()
+    @Column({
+        nullable: true
+    })
     email?: string;
 
-    @Column()
+    @Column({
+        nullable: true
+    })
     contato?: string;
 
     @Column()
