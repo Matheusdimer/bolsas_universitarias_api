@@ -27,4 +27,10 @@ export class ArquivoController {
         res.contentType(arquivo.tipo).send(arquivo.dado);
     }
 
+    async findInfo(req: Request, res: Response) {
+        const arquivo = await this.service.find(parseInt(req.params.id));
+        delete arquivo.dado;
+        res.json(arquivo);
+    }
+
 }
