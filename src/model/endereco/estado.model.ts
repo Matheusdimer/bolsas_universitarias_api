@@ -12,9 +12,7 @@ export class Estado {
     @Column()
     sigla: string;
 
-    @OneToMany(() => Municipio,municipio => municipio.estado, {
-        cascade: true
-    })
+    @OneToMany(() => Municipio,municipio => municipio.estado)
     municipios: Municipio[];
 
     constructor(
