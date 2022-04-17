@@ -14,7 +14,7 @@ export class Inscricao {
     @JoinColumn()
     bolsa: Bolsa;
 
-    @OneToMany(() => Documento, documento => null, {
+    @OneToMany(() => Documento, documento => documento.inscricao, {
         cascade: true
     })
     documentos: Documento[]
@@ -36,14 +36,15 @@ export class Inscricao {
         nullable: true
     })
     @JoinColumn()
-    aluno?: Aluno
+    aluno: Aluno
 
     constructor(
-        id: number, bolsa: Bolsa, documentos: Documento[], dataCriacao: Date, situacao: SituacaoBolsa) {
+        id: number, bolsa: Bolsa, documentos: Documento[], dataCriacao: Date, situacao: SituacaoBolsa, aluno: Aluno) {
         this.id = id;
         this.bolsa = bolsa;
         this.documentos = documentos;
         this.dataCriacao = dataCriacao;
         this.situacao = situacao;
+        this.aluno = aluno
     }
 }

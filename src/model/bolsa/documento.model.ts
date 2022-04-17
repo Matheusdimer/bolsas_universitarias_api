@@ -1,5 +1,6 @@
 import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
 import {Bolsa} from "./bolsa.model";
+import {Inscricao} from "../aluno/inscricao.model";
 
 @Entity()
 export class Documento {
@@ -24,11 +25,17 @@ export class Documento {
     })
     bolsa: Bolsa;
 
-    constructor(id: number, nome: string, dataCriacao: Date, arquivoId: number, bolsa: Bolsa) {
+    @ManyToOne(()=> Inscricao, inscricao => inscricao.documentos, {
+        createForeignKeyConstraints : true
+    })
+    inscricao: Inscricao;
+
+    constructor(id: number, nome: string, dataCriacao: Date, arquivoId: number, bolsa: Bolsa, inscricao: Inscricao) {
         this.id = id;
         this.nome = nome;
         this.dataCriacao = dataCriacao;
         this.arquivoId = arquivoId;
         this.bolsa = bolsa;
+        this.inscricao = inscricao;
     }
 }
