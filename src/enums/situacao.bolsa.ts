@@ -1,7 +1,7 @@
 export  enum SituacaoBolsa {
-    AGUARDANDO_ANALISE,
-    EM_ANALISE,
-    APROVADO,
-    REJEITADO,
-    AGUARDANDO_CORRECAO
+    AGUARDANDO_ANALISE = "Aguardando analise",
+    EM_ANALISE = "Em analise",
+    APROVADO = "Aprovado",
+    REJEITADO = "Rejeitado",
+    AGUARDANDO_CORRECAO = "Aguardando correção"
 }
