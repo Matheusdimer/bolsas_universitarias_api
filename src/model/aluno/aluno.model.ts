@@ -21,8 +21,7 @@ export class Aluno {
     cpf: string;
 
     @OneToOne(() => User, {
-        createForeignKeyConstraints: true,
-        cascade: true
+        createForeignKeyConstraints: true
     })
     @JoinColumn()
     usuario: User;
@@ -46,8 +45,7 @@ export class Aluno {
     @Column()
     sexo: Sexo;
 
-    constructor(
-        id: number, dataNascimento: Date, nome: string,cpf: string, usuario: User, sexo: Sexo) {
+    constructor(id: number, dataNascimento: Date, nome: string,cpf: string, usuario: User, sexo: Sexo) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;

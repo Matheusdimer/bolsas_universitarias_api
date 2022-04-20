@@ -1,9 +1,11 @@
 import {FindConditions, getRepository} from "typeorm";
 import {NotFoundException} from "../util/exception/not-found.exception";
 import {Aluno} from "../model/aluno/aluno.model";
+import UserService from "./user.service";
 
 export default class AlunoService {
     repository = getRepository(Aluno);
+    userService = new UserService();
 
     async find(id: number) {
         const aluno = await this.repository.findOne(id, {relations: ["endereco", "usuario"]});
@@ -21,6 +23,7 @@ export default class AlunoService {
     }
 
     async create(aluno: Aluno) {
+        await this.userService.create(aluno.usuario);
         return await this.repository.save(aluno, {});
     }
 
