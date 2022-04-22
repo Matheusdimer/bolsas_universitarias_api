@@ -13,7 +13,8 @@ export class Aluno {
     nome: string;
 
     @Column({
-        type: 'date'
+        type: 'date',
+        nullable: true
     })
     dataNascimento: Date;
 
