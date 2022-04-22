@@ -43,12 +43,6 @@ export default class UserService {
             throw new NotFoundException(`Usuário id ${id} não encontrado.`);
         }
 
-        const existenceNewUser = await this.findByUsername(user.username);
-
-        if (existenceNewUser) {
-            throw new ValidationException("Usuário já cadastrado.");
-        }
-
         if (userAccess !== existenceUser.username) {
             throw new ForbbidenException("Não é permitido alterar esse usuário.");
         }
