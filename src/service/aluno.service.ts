@@ -23,6 +23,7 @@ export default class AlunoService {
     const aluno = await this.repository.findOne({ relations: ['usuario'], where: { usuario: { username } } });
 
     if (!aluno) {
+
       throw new NotFoundException(
         `Aluno com usuário ${username} não encontrado.`
       );
