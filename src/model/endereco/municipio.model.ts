@@ -12,7 +12,6 @@ export class Municipio {
     @Column()
     sigla: string;
 
-
     @ManyToOne(()=> Estado, estado => estado.municipios, {
         createForeignKeyConstraints : true,
         cascade: true
