@@ -13,7 +13,7 @@ export class Aluno {
     nome: string;
 
     @Column({
-        type: 'timestamp'
+        type: 'date'
     })
     dataNascimento: Date;
 

@@ -1,44 +1,58 @@
-import {FindConditions, getRepository} from "typeorm";
-import {NotFoundException} from "../util/exception/not-found.exception";
-import {Aluno} from "../model/aluno/aluno.model";
+import { FindConditions, getRepository } from "typeorm";
+import { NotFoundException } from "../util/exception/not-found.exception";
+import { Aluno } from "../model/aluno/aluno.model";
 
 export default class AlunoService {
-    repository = getRepository(Aluno);
+  repository = getRepository(Aluno);
 
-    async find(id: number) {
-        const aluno = await this.repository.findOne(id, {relations: ["endereco", "usuario"]});
+  async find(id: number) {
+    const aluno = await this.repository.findOne(id, {
+      relations: ["endereco", "usuario"],
+    });
 
-        if (!aluno) {
-            throw new NotFoundException(`Aluno com id ${id} não encontrado.`);
-        }
-
-        return aluno;
+    if (!aluno) {
+      throw new NotFoundException(`Aluno com id ${id} não encontrado.`);
     }
 
-    async findAll(skip: number, take: number, codigo?: number) {
-        const where: FindConditions<Aluno> = {};
-        return await this.repository.find({ skip, take, where})
+    return aluno;
+  }
+
+  async findByUsername(username: string) {
+    const aluno = await this.repository.findOne({ relations: ['usuario'], where: { usuario: { username } } });
+
+    if (!aluno) {
+      throw new NotFoundException(
+        `Aluno com usuário ${username} não encontrado.`
+      );
     }
 
-    async create(aluno: Aluno) {
-        return await this.repository.save(aluno, {});
+    return aluno;
+  }
+
+  async findAll(skip: number, take: number, codigo?: number) {
+    const where: FindConditions<Aluno> = {};
+    return await this.repository.find({ skip, take, where });
+  }
+
+  async create(aluno: Aluno) {
+    return await this.repository.save(aluno, {});
+  }
+
+  async update(id: number, aluno: Aluno) {
+    await this.find(id);
+    aluno.id = id;
+    return await this.repository.save(aluno);
+  }
+
+  async remove(id: number) {
+    const aluno = await this.find(id);
+
+    const deleteResult = await this.repository.delete(aluno);
+
+    if (deleteResult.affected === 0) {
+      throw new Error("Erro ao excluir aluno.");
     }
 
-    async update(id: number, aluno: Aluno) {
-        await this.find(id);
-        aluno.id = id;
-        return await this.repository.save(aluno);
-    }
-
-    async remove(id: number) {
-        const aluno = await this.find(id);
-
-        const deleteResult = await this.repository.delete(aluno);
-
-        if (deleteResult.affected === 0) {
-            throw new Error("Erro ao excluir aluno.");
-        }
-
-        return aluno;
-    }
+    return aluno;
+  }
 }
