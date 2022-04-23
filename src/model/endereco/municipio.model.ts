@@ -9,9 +9,6 @@ export class Municipio {
     @Column()
     nome: string;
 
-    @Column()
-    sigla: string;
-
     @ManyToOne(()=> Estado, estado => estado.municipios, {
         createForeignKeyConstraints : true,
         cascade: true
@@ -19,10 +16,9 @@ export class Municipio {
     estado: Estado;
 
     constructor(
-        id: number, sigla: string, nome: string, estado: Estado) {
+        id: number, nome: string, estado: Estado) {
         this.id = id;
         this.nome = nome;
-        this.sigla = sigla;
         this.estado = estado;
     }
 }
