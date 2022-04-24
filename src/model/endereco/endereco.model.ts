@@ -19,15 +19,18 @@ export class Endereco {
     @JoinColumn()
     municipio: Municipio;
 
-    @Column()
     cep: number;
 
+    @Column({ nullable: true })
+    complemento?: string;
+
     constructor(
-        id: number, logradouro: string, bairro: string, municipio: Municipio, cep: number) {
+        id: number, logradouro: string, bairro: string, municipio: Municipio, cep: number, complemento?: string) {
         this.id = id;
         this.logradouro = logradouro;
         this.bairro = bairro;
         this.municipio = municipio;
         this.cep = cep;
+        this.complemento = complemento;
     }
 }
