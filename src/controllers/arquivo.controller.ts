@@ -23,14 +23,19 @@ export class ArquivoController {
     }
 
     async find(req: Request, res: Response) {
-        const arquivo = await this.service.find(parseInt(req.params.id));
+        const id = parseInt(req.params.id);
+        const arquivo = await this.service.find(id);
         res.contentType(arquivo.tipo).send(arquivo.dado);
     }
 
     async findInfo(req: Request, res: Response) {
-        const arquivo = await this.service.find(parseInt(req.params.id));
-        delete arquivo.dado;
-        res.json(arquivo);
+        const id = parseInt(req.params.id);
+        res.json(await this.service.findOnlyInfo(id));
+    }
+
+    async remove(req: Request, res: Response) {
+        const id = parseInt(req.params.id);
+        res.json(await this.service.remove(id));
     }
 
 }
