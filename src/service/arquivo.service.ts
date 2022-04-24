@@ -34,7 +34,7 @@ export class ArquivoService {
   async remove(id: number): Promise<Arquivo> {
     const arquivo = await this.findOnlyInfo(id);
 
-    const deleteResult = await this.repository.delete(arquivo);
+    const deleteResult = await this.repository.delete(id);
 
     if (deleteResult.affected === 0) {
       throw new Error("Erro ao excluir arquivo.");
