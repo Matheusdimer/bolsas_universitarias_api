@@ -10,10 +10,7 @@ export default class AlunoController {
 
     async findAll(req: Request, res: Response) {
         const { skip, limit } = parseSkipLimit(req);
-
-        const orgaoId = tryParseNumber(req.query.orgao, "Código do órgão inválido.");
-
-        return res.json(await this.service.findAll(skip, limit, orgaoId));
+        return res.json(await this.service.findAll(skip, limit));
     }
 
     async find(req: Request, res: Response) {
