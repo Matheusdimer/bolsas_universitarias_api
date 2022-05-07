@@ -19,20 +19,18 @@ export default class EnderecoService {
         return endereco;
     }
 
-    async findMunicipios(skip: number, take: number, codigo?: number){
+    async findMunicipios(codigo?: number){
         const where: FindConditions<Municipio> = {
             estado: {
                 id: codigo
             }
         };
 
-        return await this.municipioRepository.find({ skip, take, where})
+        return await this.municipioRepository.find({ order: {nome: "ASC"}, where})
     }
 
-    async findEstados(skip: number, take: number){
-        const where: FindConditions<Estado> = {};
-
-        return await this.estadoRepository.find({ skip, take, where})
+    async findEstados(){
+        return await this.estadoRepository.find({order: {nome: "ASC"}})
     }
 
     async findAll(skip: number, take: number, codigo?: number) {

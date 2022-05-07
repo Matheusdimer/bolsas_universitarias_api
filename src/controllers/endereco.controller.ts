@@ -17,17 +17,13 @@ export default class EnderecoController {
     }
 
     async findEstados(req: Request, res: Response) {
-        const { skip, limit } = parseSkipLimit(req);
-
-        return res.json(await this.service.findEstados(skip, limit));
+        return res.json(await this.service.findEstados());
     }
 
     async findMunicipios(req: Request, res: Response) {
-        const { skip, limit } = parseSkipLimit(req);
-
         const estadoId = tryParseNumber(req.params.id, "Estado invalido.");
 
-        return res.json(await this.service.findMunicipios(skip, limit, estadoId));
+        return res.json(await this.service.findMunicipios(estadoId));
     }
 
     async create(req: Request, res: Response) {

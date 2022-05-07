@@ -32,6 +32,8 @@ export class Edital {
     })
     bolsa: Bolsa;
 
+
+
     constructor(id: number, descricao: string, arquivoId: number, dataInicio: Date, dataFim: Date, dataResultado: Date, bolsa: Bolsa) {
         this.id = id;
         this.descricao = descricao;
