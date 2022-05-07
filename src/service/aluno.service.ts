@@ -20,7 +20,7 @@ export default class AlunoService {
   }
 
   async findByUsername(username: string) {
-    const aluno = await this.repository.findOne({ relations: ['usuario'], where: { usuario: { username } } });
+    const aluno = await this.repository.findOne({ relations: ['usuario','endereco', 'endereco.municipio', 'endereco.municipio.estado'], where: { usuario: { username } } });
 
     if (!aluno) {
 
