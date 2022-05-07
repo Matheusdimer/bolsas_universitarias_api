@@ -28,7 +28,7 @@ export default class EnderecoController {
     async findMunicipios(req: Request, res: Response) {
         const { skip, limit } = parseSkipLimit(req);
 
-        const estadoId = tryParseNumber(req.query.orgao, "Estado invalido.");
+        const estadoId = tryParseNumber(req.params.id, "Estado invalido.");
 
         return res.json(await this.service.findMunicipios(skip, limit, estadoId));
     }
