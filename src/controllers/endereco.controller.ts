@@ -19,6 +19,20 @@ export default class EnderecoController {
         return res.json(await this.service.find(id));
     }
 
+    async findEstados(req: Request, res: Response) {
+        const { skip, limit } = parseSkipLimit(req);
+
+        return res.json(await this.service.findEstados(skip, limit));
+    }
+
+    async findMunicipios(req: Request, res: Response) {
+        const { skip, limit } = parseSkipLimit(req);
+
+        const estadoId = tryParseNumber(req.query.orgao, "Estado invalido.");
+
+        return res.json(await this.service.findMunicipios(skip, limit, estadoId));
+    }
+
     async create(req: Request, res: Response) {
         let endereco : Endereco = req.body;
         return res.json(await this.service.create(endereco));

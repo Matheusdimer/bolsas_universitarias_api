@@ -1,9 +1,13 @@
 import {FindConditions, getRepository} from "typeorm";
 import {NotFoundException} from "../util/exception/not-found.exception";
 import {Endereco} from "../model/endereco/endereco.model";
+import {Municipio} from "../model/endereco/municipio.model";
+import {Estado} from "../model/endereco/estado.model";
 
 export default class EnderecoService {
     repository = getRepository(Endereco);
+    municipioRepository = getRepository(Municipio);
+    estadoRepository = getRepository(Estado);
 
     async find(id: number) {
         const endereco = await this.repository.findOne(id, {relations: ["municipio", "municipio.estado"]});
@@ -13,6 +17,22 @@ export default class EnderecoService {
         }
 
         return endereco;
+    }
+
+    async findMunicipios(skip: number, take: number, codigo?: number){
+        const where: FindConditions<Municipio> = {
+            estado: {
+                id: codigo
+            }
+        };
+
+        return await this.municipioRepository.find({ skip, take, where})
+    }
+
+    async findEstados(skip: number, take: number){
+        const where: FindConditions<Estado> = {};
+
+        return await this.estadoRepository.find({ skip, take, where})
     }
 
     async findAll(skip: number, take: number, codigo?: number) {
