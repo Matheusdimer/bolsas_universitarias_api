@@ -1,4 +1,4 @@
-import {FindConditions, getRepository} from "typeorm";
+import {FindConditions, getRepository, Like} from "typeorm";
 import {NotFoundException} from "../util/exception/not-found.exception";
 import {Endereco} from "../model/endereco/endereco.model";
 import {Municipio} from "../model/endereco/municipio.model";
@@ -19,12 +19,15 @@ export default class EnderecoService {
         return endereco;
     }
 
-    async findMunicipios(codigo?: number){
-        const where: FindConditions<Municipio> = {
+    async findMunicipios(codigo?: number, nome?: string){
+        let where: FindConditions<Municipio> = {
             estado: {
                 id: codigo
             }
         };
+        if(nome){
+            where.nome = Like(`%${nome}%`);
+        }
 
         return await this.municipioRepository.find({ order: {nome: "ASC"}, where})
     }

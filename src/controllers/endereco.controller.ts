@@ -22,8 +22,9 @@ export default class EnderecoController {
 
     async findMunicipios(req: Request, res: Response) {
         const estadoId = tryParseNumber(req.params.id, "Estado invalido.");
+        const nome = req.query.nome ? (req.query.nome).toString() : undefined;
 
-        return res.json(await this.service.findMunicipios(estadoId));
+        return res.json(await this.service.findMunicipios(estadoId, nome));
     }
 
     async create(req: Request, res: Response) {
