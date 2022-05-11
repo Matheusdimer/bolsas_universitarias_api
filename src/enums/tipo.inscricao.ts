@@ -1,4 +1,4 @@
-export  enum Origem {
+export  enum TipoInscricao {
     EXTERNA = "Externa",
     INTERNA = "Interna"
 }
