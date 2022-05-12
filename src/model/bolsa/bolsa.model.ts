@@ -3,7 +3,7 @@ import {Documento} from "./documento.model";
 import {Requisito} from "./requisito.model";
 import {Edital} from "./edital.model";
 import {TipoBolsa} from "../../enums/tipo.bolsa";
-import {Origem} from "../../enums/origem";
+import {TipoInscricao} from "../../enums/tipo.inscricao";
 
 @Entity()
 export class Bolsa {
@@ -44,8 +44,15 @@ export class Bolsa {
     @Column()
     tipoBolsa: TipoBolsa;
 
-    // @Column()
-    // origem: Origem;
+    @Column({
+        default:TipoInscricao.INTERNA
+    })
+    tipoInscricao: TipoInscricao;
+
+    @Column({
+        nullable:true
+    })
+    url?: string;
 
     constructor(
         id: number,
@@ -56,7 +63,8 @@ export class Bolsa {
         editais: Edital[],
         fotoId: number,
         tipoBolsa: TipoBolsa,
-        // origem: Origem
+        tipoInscricao: TipoInscricao,
+        url: string
     ) {
         this.id = id;
         this.descricao = descricao;
@@ -67,6 +75,7 @@ export class Bolsa {
         this.fotoId = fotoId;
         this.editalAtivo = true;
         this.tipoBolsa = tipoBolsa;
-        // this.origem = origem;
+        this.tipoInscricao = tipoInscricao;
+        this.url = url;
     }
 }
