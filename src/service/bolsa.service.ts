@@ -29,7 +29,7 @@ export default class BolsaService {
   verifyEditalAtivo(bolsa: Bolsa) {
     bolsa.editalAtivo = bolsa.editais.some((edital) => {
         const now = new Date().getTime();
-        return edital.dataInicio.getTime() <= now && now <= edital.dataFim.getTime();
+        return new Date(edital.dataInicio).getTime() <= now && now <= new Date(edital.dataFim).getTime();
     });
   }
 
