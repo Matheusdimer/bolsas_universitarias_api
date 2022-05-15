@@ -17,9 +17,10 @@ export class Funcionario {
     usuario: User;
 
     @Column({
-        type: 'date'
+        type: 'date',
+        nullable: true
     })
-    dataNascimento: Date;
+    dataNascimento?: Date;
 
     @Column()
     cpf: string;

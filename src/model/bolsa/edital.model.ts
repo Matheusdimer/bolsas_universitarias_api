@@ -9,8 +9,8 @@ export class Edital {
     @Column()
     descricao: string;
 
-    @Column()
-    arquivoId: number;
+    @Column({ nullable: true })
+    arquivoId?: number;
 
     @Column({
         type: 'date'
@@ -23,9 +23,10 @@ export class Edital {
     dataFim: Date;
 
     @Column({
-        type: 'date'
+        type: 'date',
+        nullable: true
     })
-    dataResultado: Date;
+    dataResultado?: Date;
 
     @ManyToOne(()=> Bolsa, bolsa => bolsa.editais, {
         createForeignKeyConstraints : true
