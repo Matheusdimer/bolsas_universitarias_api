@@ -17,7 +17,7 @@ export class Funcionario {
     usuario: User;
 
     @Column({
-        type: 'timestamp'
+        type: 'date'
     })
     dataNascimento: Date;
 
