@@ -13,17 +13,17 @@ export class Edital {
     arquivoId: number;
 
     @Column({
-        type: 'timestamp'
+        type: 'date'
     })
     dataInicio: Date;
 
     @Column({
-        type: 'timestamp'
+        type: 'date'
     })
     dataFim: Date;
 
     @Column({
-        type: 'timestamp'
+        type: 'date'
     })
     dataResultado: Date;
 
