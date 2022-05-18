@@ -27,7 +27,7 @@ export class Aluno {
     @JoinColumn()
     usuario: User;
 
-    @OneToOne(()=> Endereco, {
+    @OneToOne(() => Endereco, {
         nullable: true,
         cascade: true
     })

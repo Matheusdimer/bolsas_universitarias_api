@@ -37,10 +37,10 @@ export default class AlunoService {
     return await this.repository.find({ skip, take, where });
   }
 
-    async create(aluno: Aluno) {
-        await this.userService.create(aluno.usuario);
-        return await this.repository.save(aluno, {});
-    }
+  async create(aluno: Aluno) {
+      await this.userService.create(aluno.usuario);
+      return await this.repository.save(aluno, {});
+  }
 
   async update(id: number, aluno: Aluno) {
     await this.find(id);
