@@ -9,10 +9,12 @@ export default class BolsaService {
     const bolsa = await this.repository.findOne(id, {
       relations: ["requisitos", "editais", "documentos"],
     });
-    console.log(bolsa);
+
     if (!bolsa) {
       throw new NotFoundException(`Bolsa com id ${id} não encontrada.`);
     }
+
+    this.verifyEditalAtivo(bolsa);
 
     return bolsa;
   }
