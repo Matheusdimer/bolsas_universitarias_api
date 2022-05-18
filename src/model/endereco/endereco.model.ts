@@ -18,7 +18,8 @@ export class Endereco {
     @JoinColumn()
     municipio: Municipio;
 
-    cep: number;
+    @Column()
+    cep: string;
 
     @Column({ nullable: true })
     complemento?: string;
