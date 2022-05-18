@@ -31,11 +31,12 @@ export class Funcionario {
     })
     email?: string;
 
-    constructor(id: number, password: string, dataNascimento: Date, nome: string, cpf: string, usuario: User) {
+    constructor(id: number, nome: string, usuario: User, dataNascimento: Date, cpf: string, email: string) {
         this.id = id;
         this.nome = nome;
-        this.cpf = cpf;
-        this.dataNascimento = dataNascimento;
         this.usuario = usuario;
+        this.dataNascimento = dataNascimento;
+        this.cpf = cpf;
+        this.email = email;
     }
 }
