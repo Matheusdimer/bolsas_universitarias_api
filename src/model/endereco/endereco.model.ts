@@ -14,7 +14,7 @@ export class Endereco {
     @Column()
     bairro: string;
 
-    @OneToOne(()=> Municipio)
+    @ManyToOne(() => Municipio)
     @JoinColumn()
     municipio: Municipio;
 
