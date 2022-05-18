@@ -28,7 +28,7 @@ export class Endereco {
     numero?: string;
 
     constructor(
-        id: number, logradouro: string, bairro: string, municipio: Municipio, cep: number, complemento?: string) {
+        id: number, logradouro: string, bairro: string, municipio: Municipio, cep: string, complemento?: string) {
         this.id = id;
         this.logradouro = logradouro;
         this.bairro = bairro;
