@@ -31,4 +31,9 @@ export default class BolsaController {
         const id = parseInt(req.params.id);
         return res.json(await this.service.remove(id));
     }
+
+    async removeEdital(req: Request, res: Response) {
+        const id = parseInt(req.params.idEdital);
+        res.json(await this.service.removeEdital(id));
+    }
 }

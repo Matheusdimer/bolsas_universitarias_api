@@ -1,9 +1,11 @@
 import { FindConditions, getRepository } from "typeorm";
 import { NotFoundException } from "../util/exception/not-found.exception";
 import { Bolsa } from "../model/bolsa/bolsa.model";
+import { Edital } from "../model/bolsa/edital.model";
 
 export default class BolsaService {
   repository = getRepository(Bolsa);
+  editalRepository = getRepository(Edital);
 
   async find(id: number) {
     const bolsa = await this.repository.findOne(id, {
@@ -55,5 +57,21 @@ export default class BolsaService {
     }
 
     return bolsa;
+  }
+
+  async removeEdital(id: number) {
+    const edital = await this.editalRepository.findOne(id);
+
+    if (!edital) {
+      throw new NotFoundException('Edital não encontrado.');
+    }
+
+    const deleteResult = await this.editalRepository.delete(edital);
+
+    if (deleteResult.affected === 0) {
+      throw new Error("Erro ao excluir bolsa.");
+    }
+
+    return edital;
   }
 }

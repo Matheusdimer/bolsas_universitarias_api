@@ -15,4 +15,6 @@ router.put("/:id", authMiddleware, controller.update.bind(controller));
 
 router.delete("/:id", authMiddleware, controller.remove.bind(controller));
 
+router.delete("/:id/editais/:idEdital", authMiddleware, controller.removeEdital.bind(controller));
+
 export default router;
