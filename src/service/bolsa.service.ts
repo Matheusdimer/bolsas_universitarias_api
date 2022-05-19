@@ -66,10 +66,10 @@ export default class BolsaService {
       throw new NotFoundException('Edital não encontrado.');
     }
 
-    const deleteResult = await this.editalRepository.delete(edital);
+    const deleteResult = await this.editalRepository.delete(edital.id);
 
     if (deleteResult.affected === 0) {
-      throw new Error("Erro ao excluir bolsa.");
+      throw new Error("Erro ao excluir edital.");
     }
 
     return edital;

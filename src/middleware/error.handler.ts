@@ -7,7 +7,7 @@ export function httpErrorHandler(err: HttpException, req: Request, res: Response
     console.log(err);
     res.status(status).json({
         status: status,
-        message: status === 500 ? "Ocorreu um erro interno." : err.message
+        message: err.message || "Ocorreu um erro interno." 
     });
 }
 
