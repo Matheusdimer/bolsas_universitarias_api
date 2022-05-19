@@ -40,11 +40,12 @@ export default class FuncionarioService {
   }
 
     async create(funcionario: Funcionario) {
-        let idUsuario = funcionario.usuario.id;
-        if(!isNaN(idUsuario)){
-          await this.userService.create(funcionario.usuario);
+        const idUsuario = funcionario.usuario?.id;
+        
+        if(isNaN(idUsuario)){
+          funcionario.usuario = await this.userService.create(funcionario.usuario);
         }
-        return await this.repository.save(funcionario, {});
+        return await this.repository.save(funcionario);
     }
 
   async update(id: number, funcionario: Funcionario) {
