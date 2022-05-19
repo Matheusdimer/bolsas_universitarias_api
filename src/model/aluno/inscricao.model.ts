@@ -1,7 +1,7 @@
 import {Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Bolsa} from "../bolsa/bolsa.model";
 import {Documento} from "../bolsa/documento.model";
-import {SituacaoBolsa} from "../../enums/situacao.bolsa";
+import {SituacaoInscricao} from "../../enums/situacao.bolsa";
 import {Aluno} from "./aluno.model";
 
 @Entity()
@@ -10,7 +10,7 @@ export class Inscricao {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(()=> Bolsa)
+    @ManyToOne(() => Bolsa)
     @JoinColumn()
     bolsa: Bolsa;
 
@@ -25,12 +25,17 @@ export class Inscricao {
     dataCriacao: Date
 
     @Column()
-    situacao: SituacaoBolsa
+    situacao: SituacaoInscricao
 
     @Column({
         nullable: true
     })
-    motivoRetorno?: string
+    motivoRetorno?: string;
+
+    @Column({
+        nullable: true
+    })
+    observacoes?: string;
 
     @ManyToOne(()=> Aluno, {
         nullable: true
@@ -39,7 +44,7 @@ export class Inscricao {
     aluno: Aluno
 
     constructor(
-        id: number, bolsa: Bolsa, documentos: Documento[], dataCriacao: Date, situacao: SituacaoBolsa, aluno: Aluno) {
+        id: number, bolsa: Bolsa, documentos: Documento[], dataCriacao: Date, situacao: SituacaoInscricao, aluno: Aluno) {
         this.id = id;
         this.bolsa = bolsa;
         this.documentos = documentos;

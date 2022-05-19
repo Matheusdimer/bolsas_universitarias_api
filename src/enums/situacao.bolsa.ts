@@ -1,4 +1,4 @@
-export  enum SituacaoBolsa {
+export enum SituacaoInscricao {
     AGUARDANDO_ANALISE = "Aguardando analise",
     EM_ANALISE = "Em analise",
     APROVADO = "Aprovado",

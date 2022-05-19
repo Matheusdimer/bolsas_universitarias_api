@@ -20,15 +20,17 @@ export class Documento {
     })
     arquivoId: number
 
-    @ManyToOne(()=> Bolsa, bolsa => bolsa.documentos, {
-        createForeignKeyConstraints : true
+    @ManyToOne(() => Bolsa, bolsa => bolsa.documentos, {
+        createForeignKeyConstraints : true,
+        nullable: true,
     })
-    bolsa: Bolsa;
+    bolsa?: Bolsa;
 
-    @ManyToOne(()=> Inscricao, inscricao => inscricao.documentos, {
-        createForeignKeyConstraints : true
+    @ManyToOne(() => Inscricao, inscricao => inscricao.documentos, {
+        createForeignKeyConstraints : true,
+        nullable: true,
     })
-    inscricao: Inscricao;
+    inscricao?: Inscricao;
 
     constructor(id: number, nome: string, dataCriacao: Date, arquivoId: number, bolsa: Bolsa, inscricao: Inscricao) {
         this.id = id;
