@@ -24,4 +24,18 @@ export class InscricaoDocumento {
 
     @Column()
     observacoes: string;
+
+    constructor(
+        id: number,
+        documento: Documento,
+        inscricao: Inscricao,
+        arquivoId: number,
+        observacoes: string
+    ) {
+        this.id = id;
+        this.documento = documento;
+        this.inscricao = inscricao;
+        this.arquivoId = arquivoId;
+        this.observacoes = observacoes
+    }
 }
