@@ -32,12 +32,16 @@ export class Documento {
     })
     inscricao?: Inscricao;
 
-    constructor(id: number, nome: string, dataCriacao: Date, arquivoId: number, bolsa: Bolsa, inscricao: Inscricao) {
+    @Column()
+    obrigatorioAluno: boolean;
+
+    constructor(id: number, nome: string, dataCriacao: Date, arquivoId: number, bolsa: Bolsa, inscricao: Inscricao, obrigatorioAluno: boolean) {
         this.id = id;
         this.nome = nome;
         this.dataCriacao = dataCriacao;
         this.arquivoId = arquivoId;
         this.bolsa = bolsa;
         this.inscricao = inscricao;
+        this.obrigatorioAluno = obrigatorioAluno;
     }
 }

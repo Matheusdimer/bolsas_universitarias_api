@@ -3,6 +3,7 @@ import {Bolsa} from "../bolsa/bolsa.model";
 import {Documento} from "../bolsa/documento.model";
 import {SituacaoInscricao} from "../../enums/situacao.bolsa";
 import {Aluno} from "./aluno.model";
+import { InscricaoDocumento } from "../inscricao/inscricao-documento.model";
 
 @Entity()
 export class Inscricao {
@@ -14,10 +15,10 @@ export class Inscricao {
     @JoinColumn()
     bolsa: Bolsa;
 
-    @OneToMany(() => Documento, documento => documento.inscricao, {
+    @OneToMany(() => InscricaoDocumento, documento => documento.inscricao, {
         cascade: true
     })
-    documentos: Documento[]
+    documentos: InscricaoDocumento[]
 
     @Column({
         type: "timestamp"
@@ -44,7 +45,7 @@ export class Inscricao {
     aluno: Aluno
 
     constructor(
-        id: number, bolsa: Bolsa, documentos: Documento[], dataCriacao: Date, situacao: SituacaoInscricao, aluno: Aluno) {
+        id: number, bolsa: Bolsa, documentos: InscricaoDocumento[], dataCriacao: Date, situacao: SituacaoInscricao, aluno: Aluno) {
         this.id = id;
         this.bolsa = bolsa;
         this.documentos = documentos;
