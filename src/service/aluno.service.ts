@@ -8,7 +8,7 @@ export default class AlunoService {
     userService = new UserService();
 
   async find(id: number) {
-    const aluno = await this.repository.findOne(id, {
+    let aluno = await this.repository.findOne(id, {
       relations: ["endereco", "usuario"],
     });
 
