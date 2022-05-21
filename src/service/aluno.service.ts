@@ -16,7 +16,7 @@ export default class AlunoService {
       throw new NotFoundException(`Aluno com id ${id} não encontrado.`);
     }
     // @ts-expect-error
-    delete obj.usuario.password;
+    delete aluno.usuario.password;
     return aluno;
   }
 
