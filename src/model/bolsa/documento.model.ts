@@ -32,7 +32,9 @@ export class Documento {
     })
     inscricao?: Inscricao;
 
-    @Column()
+    @Column({
+        default: false
+    })
     obrigatorioAluno: boolean;
 
     constructor(id: number, nome: string, dataCriacao: Date, arquivoId: number, bolsa: Bolsa, inscricao: Inscricao, obrigatorioAluno: boolean) {
