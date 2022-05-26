@@ -8,7 +8,10 @@ export class InscricaoDocumento {
     @PrimaryGeneratedColumn()
     id?: number;
     
-    @ManyToOne(() => Documento, { createForeignKeyConstraints: true })
+    @ManyToOne(() => Documento, {
+        createForeignKeyConstraints: true,
+        cascade: true
+    })
     @JoinColumn()
     documento: Documento;
 
@@ -18,8 +21,10 @@ export class InscricaoDocumento {
     inscricao: Inscricao;
 
     
-    @Column()
-    arquivoId: number;
+    @Column({
+        nullable: true
+    })
+    arquivoId?: number;
 
 
     @Column()

@@ -8,16 +8,17 @@ export default class AlunoService {
     userService = new UserService();
 
   async find(id: number) {
-    let aluno = await this.repository.findOne(id, {
-      relations: ["endereco", "usuario"],
+    let obj = await this.repository.findOne(id, {
+      relations: ["usuario", "endereco"],
     });
 
-    if (!aluno) {
+    if (!obj) {
       throw new NotFoundException(`Aluno com id ${id} não encontrado.`);
     }
+
     // @ts-expect-error
-    delete aluno.usuario.password;
-    return aluno;
+    delete obj.usuario.password;
+    return obj;
   }
 
   async findByUsername(username: string) {

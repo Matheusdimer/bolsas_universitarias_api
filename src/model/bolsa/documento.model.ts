@@ -18,7 +18,7 @@ export class Documento {
     @Column({
         nullable: true
     })
-    arquivoId: number
+    arquivoId?: number
 
     @ManyToOne(() => Bolsa, bolsa => bolsa.documentos, {
         createForeignKeyConstraints : true,

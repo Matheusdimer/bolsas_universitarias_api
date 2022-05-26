@@ -5,7 +5,7 @@ import {Funcionario} from "../model/aluno/funcionario.model";
 
 export default class FuncionarioService {
     repository = getRepository(Funcionario);
-  userService = new UserService();
+    userService = new UserService();
 
   async find(id: number) {
     let obj = await this.repository.findOne(id, {
