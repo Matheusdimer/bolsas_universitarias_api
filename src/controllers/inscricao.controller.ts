@@ -10,7 +10,7 @@ export default class InscricaoController {
         const { skip, limit } = parseSkipLimit(req);
         let idAluno;
         
-        if (req.params.idAluno) {
+        if (req.query.idAluno) {
             idAluno = tryParseNumber(idAluno, 'Id do aluno inválido');
         }
 
