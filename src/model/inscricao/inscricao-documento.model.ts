@@ -27,8 +27,8 @@ export class InscricaoDocumento {
     arquivoId?: number;
 
 
-    @Column()
-    observacoes: string;
+    @Column({ nullable: true })
+    observacoes?: string;
 
     constructor(
         id: number,
