@@ -8,10 +8,10 @@ export default class InscricaoController {
 
     async findAll(req: Request, res: Response) {
         const { skip, limit } = parseSkipLimit(req);
-        let idAluno;
+        let idAluno: number | undefined;
         
         if (req.query.idAluno) {
-            idAluno = tryParseNumber(idAluno, 'Id do aluno inválido');
+            idAluno = tryParseNumber(req.query.idAluno, 'Id do aluno inválido');
         }
 
         return res.json(await this.service.findAll(skip, limit, idAluno));
