@@ -15,10 +15,14 @@ export default class InscricaoService {
         return inscricao;
     }
 
-    async findAll(skip: number, take: number, codigo?: number) {
+    async findAll(skip: number, take: number, idAluno?: number) {
         const where: FindConditions<Inscricao> = {};
 
-        return await this.repository.find({ skip, take, where, relations: ['aluno', 'bolsa']})
+        if (idAluno) {
+            where.aluno = { id: idAluno };
+        }
+
+        return await this.repository.find({ skip, take, where, relations: ['aluno', 'bolsa']});
     }
 
     async create(inscricao: Inscricao) {
