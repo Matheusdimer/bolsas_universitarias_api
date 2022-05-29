@@ -6,8 +6,15 @@ export default class InscricaoService {
     repository = getRepository(Inscricao);
 
     async find(id: number) {
-        const inscricao = await this.repository.findOne(id, {relations: ["documentos", "bolsa", "aluno"]});
-        console.log(inscricao)
+        const inscricao = await this.repository.findOne(id, {
+            relations: [
+                "documentos", 
+                "documentos.documento", 
+                "bolsa", 
+                "aluno"
+            ]
+        });
+
         if (!inscricao) {
             throw new NotFoundException(`Inscricao com id ${id} não encontrado.`);
         }
