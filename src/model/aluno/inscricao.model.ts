@@ -15,7 +15,7 @@ export class Inscricao {
     @JoinColumn()
     bolsa: Bolsa;
 
-    @OneToMany(() => InscricaoDocumento, documento => documento.inscricao)
+    @OneToMany(() => InscricaoDocumento, documento => documento.inscricao, { cascade: ['remove'] })
     documentos: InscricaoDocumento[]
 
     @Column({
