@@ -1,9 +1,11 @@
 import {FindConditions, getRepository} from "typeorm";
 import {NotFoundException} from "../util/exception/not-found.exception";
 import {Inscricao} from "../model/aluno/inscricao.model";
+import { InscricaoDocumento } from "../model/inscricao/inscricao-documento.model";
 
 export default class InscricaoService {
     repository = getRepository(Inscricao);
+    inscricaoDocumentoRepository = getRepository(InscricaoDocumento);
 
     async find(id: number) {
         const inscricao = await this.repository.findOne(id, {
@@ -33,7 +35,15 @@ export default class InscricaoService {
     }
 
     async create(inscricao: Inscricao) {
-        return await this.repository.save(inscricao);
+        const inscricaoSaved = await this.repository.save(inscricao);
+
+        inscricao.documentos.forEach(async (inscricaoDocumento, index) => {
+            inscricaoDocumento.inscricao = inscricaoSaved;
+            inscricaoSaved.documentos[index] = await this.inscricaoDocumentoRepository
+                .save(inscricaoDocumento);
+        });
+
+        return inscricaoSaved;
     }
 
     async update(id: number, inscricao: Inscricao) {
