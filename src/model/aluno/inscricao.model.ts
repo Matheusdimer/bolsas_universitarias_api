@@ -1,4 +1,4 @@
-import {Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinColumn, JoinTable, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Bolsa} from "../bolsa/bolsa.model";
 import {Documento} from "../bolsa/documento.model";
 import {SituacaoInscricao} from "../../enums/situacao.bolsa";
@@ -16,7 +16,7 @@ export class Inscricao {
     bolsa: Bolsa;
 
     @OneToMany(() => InscricaoDocumento, documento => documento.inscricao, {
-        cascade: true
+        cascade: true,
     })
     documentos: InscricaoDocumento[]
 

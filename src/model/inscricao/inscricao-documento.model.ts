@@ -10,14 +10,14 @@ export class InscricaoDocumento {
     
     @ManyToOne(() => Documento, {
         createForeignKeyConstraints: true,
-        cascade: true
     })
     @JoinColumn()
     documento: Documento;
 
     
-    @ManyToOne(() => Inscricao, inscricao => inscricao.documentos)
-    @JoinColumn()
+    @ManyToOne(() => Inscricao, inscricao => inscricao.documentos, {
+        createForeignKeyConstraints : true,
+    })
     inscricao: Inscricao;
 
     
