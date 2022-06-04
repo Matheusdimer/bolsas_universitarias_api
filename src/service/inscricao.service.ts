@@ -41,6 +41,9 @@ export default class InscricaoService {
             inscricaoDocumento.inscricao = inscricaoSaved;
             inscricaoSaved.documentos[index] = await this.inscricaoDocumentoRepository
                 .save(inscricaoDocumento);
+
+            // @ts-ignore
+            delete inscricaoSaved.documentos[index].inscricao
         });
 
         return inscricaoSaved;
