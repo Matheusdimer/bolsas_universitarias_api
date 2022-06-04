@@ -39,12 +39,14 @@ export default class InscricaoService {
 
         inscricao.documentos.forEach(async (inscricaoDocumento, index) => {
             inscricaoDocumento.inscricao = inscricaoSaved;
-            inscricaoSaved.documentos[index] = await this.inscricaoDocumentoRepository
+            const documentoSaved = await this.inscricaoDocumentoRepository
                 .save(inscricaoDocumento);
-
-            // @ts-ignore
-            delete inscricaoSaved.documentos[index].inscricao
+            
+            delete documentoSaved.inscricao;
+            inscricaoSaved.documentos[index] = documentoSaved;
         });
+
+        inscricaoSaved.documentos = []
 
         return inscricaoSaved;
     }

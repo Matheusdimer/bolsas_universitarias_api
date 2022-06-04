@@ -12,13 +12,13 @@ export class InscricaoDocumento {
         createForeignKeyConstraints: true,
     })
     @JoinColumn()
-    documento: Documento;
+    documento?: Documento;
 
     
     @ManyToOne(() => Inscricao, inscricao => inscricao.documentos, {
         createForeignKeyConstraints : true,
     })
-    inscricao: Inscricao;
+    inscricao?: Inscricao;
 
     
     @Column({
