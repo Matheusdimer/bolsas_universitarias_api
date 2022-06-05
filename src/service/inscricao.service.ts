@@ -53,8 +53,19 @@ export default class InscricaoService {
 
     async update(id: number, inscricao: Inscricao) {
         await this.find(id);
-        inscricao.id = id;
-        return await this.repository.save(inscricao);
+        
+        const inscricaoSaved = await this.repository.save(inscricao);
+
+        inscricao.documentos.forEach(async (inscricaoDocumento, index) => {
+            inscricaoDocumento.inscricao = inscricaoSaved;
+            const documentoSaved = await this.inscricaoDocumentoRepository
+                .save(inscricaoDocumento);
+            
+            delete documentoSaved.inscricao;
+            inscricaoSaved.documentos[index] = documentoSaved;
+        });
+
+        return inscricaoSaved;
     }
 
     async remove(id: number) {
