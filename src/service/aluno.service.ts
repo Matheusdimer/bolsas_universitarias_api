@@ -2,9 +2,11 @@ import {FindConditions, getRepository} from "typeorm";
 import {NotFoundException} from "../util/exception/not-found.exception";
 import {Aluno} from "../model/aluno/aluno.model";
 import UserService from "./user.service";
+import { Endereco } from "../model/endereco/endereco.model";
 
 export default class AlunoService {
     repository = getRepository(Aluno);
+    enderecoRepo = getRepository(Endereco);
     userService = new UserService();
 
   async find(id: number) {
@@ -47,6 +49,12 @@ export default class AlunoService {
   async update(id: number, aluno: Aluno) {
     await this.find(id);
     aluno.id = id;
+
+    if (aluno.endereco) {
+      const endereco = await this.enderecoRepo.save(aluno.endereco);
+      aluno.endereco = endereco;
+    }
+
     return await this.repository.save(aluno);
   }
 
