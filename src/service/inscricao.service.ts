@@ -65,6 +65,8 @@ export default class InscricaoService {
             inscricaoSaved.documentos[index] = documentoSaved;
         });
 
+        inscricaoSaved.documentos = []
+
         return inscricaoSaved;
     }
 
