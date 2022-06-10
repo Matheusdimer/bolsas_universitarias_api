@@ -10,7 +10,9 @@ export default class InscricaoService {
     async find(id: number) {
         const inscricao = await this.repository.findOne(id, {
             relations: [
-                "documentos", 
+                "documentos",
+                "enderecos",
+                "enderecos.municipio",
                 "documentos.documento", 
                 "bolsa", 
                 "aluno"
