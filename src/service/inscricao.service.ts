@@ -14,7 +14,9 @@ export default class InscricaoService {
                 "documentos.documento", 
                 "bolsa", 
                 "aluno",
-                "aluno.endereco"
+                "aluno.endereco",
+                "aluno.endereco.municipio",
+                "aluno.endereco.estado"
             ]
         });
 
