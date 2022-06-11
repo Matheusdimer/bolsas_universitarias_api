@@ -11,11 +11,10 @@ export default class InscricaoService {
         const inscricao = await this.repository.findOne(id, {
             relations: [
                 "documentos",
-                "aluno.enderecos",
-                "aluno.enderecos.municipio",
                 "documentos.documento", 
                 "bolsa", 
-                "aluno"
+                "aluno",
+                "aluno.enderecos"
             ]
         });
 
