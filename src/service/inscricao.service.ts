@@ -16,7 +16,7 @@ export default class InscricaoService {
                 "aluno",
                 "aluno.endereco",
                 "aluno.endereco.municipio",
-                "aluno.endereco.estado"
+                "aluno.endereco.municipio.estado"
             ]
         });
 
