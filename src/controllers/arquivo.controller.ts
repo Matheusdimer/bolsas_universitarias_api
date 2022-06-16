@@ -25,6 +25,10 @@ export class ArquivoController {
     async find(req: Request, res: Response) {
         const id = parseInt(req.params.id);
         const arquivo = await this.service.find(id);
+        res.set({
+            'Content-Disposition': 'attachment; filename=' + arquivo.nome,
+            'Content-Type': arquivo.tipo
+        });
         res.contentType(arquivo.tipo).send(arquivo.dado);
     }
 
