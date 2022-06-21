@@ -38,7 +38,7 @@ export default class AlunoService {
 
   async findAll(skip: number, take: number, codigo?: number) {
     const where: FindConditions<Aluno> = {};
-    return await this.repository.find({ skip, take, where });
+    return await this.repository.find({ skip, take, where, order: { nome: 'ASC' } });
   }
 
   async create(aluno: Aluno) {

@@ -36,7 +36,7 @@ export default class FuncionarioService {
 
   async findAll(skip: number, take: number, codigo?: number) {
     const where: FindConditions<Funcionario> = {};
-    return await this.repository.find({ skip, take, where });
+    return await this.repository.find({ skip, take, where, order: { nome: 'ASC' } });
   }
 
     async create(funcionario: Funcionario) {
