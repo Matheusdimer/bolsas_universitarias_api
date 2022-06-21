@@ -34,7 +34,15 @@ export default class InscricaoService {
             where.aluno = { id: idAluno };
         }
 
-        return await this.repository.find({ skip, take, where, relations: ['aluno', 'bolsa']});
+        return await this.repository.find({ 
+            skip,
+            take,
+            where,
+            relations: ['aluno', 'bolsa'],
+            order: {
+                dataCriacao: 'DESC'
+            }
+        });
     }
 
     async create(inscricao: Inscricao) {
